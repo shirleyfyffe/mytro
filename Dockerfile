@@ -13,7 +13,10 @@ ADD trojan /mytrojan/trojan
 ADD config.json /mytrojan/config.json
 ADD server-cert.pem /mytrojan/server-cert.pem
 ADD server-key.pem /mytrojan/server-key.pem
-RUN chmod +x /mytrojan/trojan
+
+RUN chmod +x /mytrojan/trojan \
+ && chgrp -R 0 /mytrojan \
+ && chmod -R g+rwX /mytrojan 
     
 ADD entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
