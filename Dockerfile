@@ -2,7 +2,7 @@ FROM alpine:3.9
 
 ARG VERSION='v1.12.3'
 
-RUN mkdir -m 777 /mytrojan \
+RUN mkdir -m 777 /mytrojan
 RUN apk add --no-cache --virtual .trojan-rundeps \
        libstdc++ \
        boost-system \
