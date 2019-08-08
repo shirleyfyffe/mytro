@@ -21,6 +21,6 @@ RUN chmod +x /mytrojan/trojan \
 ADD entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
-ENTRYPOINT  /entrypoint.sh 
+# ENTRYPOINT  /entrypoint.sh 
 
 EXPOSE 8080
