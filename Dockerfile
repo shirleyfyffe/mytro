@@ -4,8 +4,8 @@ ARG VERSION='v1.12.3'
 
 RUN mkdir -m 777 /mytrojan
 COPY config.json /mytrojan/
-COPY server-cert.pem /mytrojan/
-COPY server-key.pem /mytrojan/
+COPY server.crt /mytrojan/
+COPY server.key /mytrojan/
 RUN chgrp -R 0 /mytrojan \
  && chmod -R g+rwX /mytrojan 
 
