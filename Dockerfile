@@ -2,6 +2,8 @@ FROM alpine:3.9
 
 ARG VERSION='v1.12.3'
 
+ENV PORT 8080
+
 RUN mkdir -m 777 /mytrojan
 COPY server-cert.pem /mytrojan/
 COPY server-key.pem /mytrojan/
@@ -19,7 +21,7 @@ RUN apk add --no-cache --virtual .build-deps \
         git \
     && git clone --branch=${VERSION} https://github.com/trojan-gfw/trojan.git \
     && (cd trojan && cmake . && make -j $(nproc) && strip -s trojan \
-    && mv trojan /usr/local/bin) \
+    && mv trojan /mytrojan) \
     && rm -rf trojan \
     && apk del .build-deps \
     && apk add --no-cache --virtual .trojan-rundeps \
