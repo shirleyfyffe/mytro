@@ -3,7 +3,6 @@ FROM alpine:3.9
 ARG VERSION='v1.12.3'
 
 RUN mkdir -m 777 /mytrojan
-COPY config.json /mytrojan/
 COPY server-cert.pem /mytrojan/
 COPY server-key.pem /mytrojan/
 RUN chgrp -R 0 /mytrojan \
@@ -27,6 +26,8 @@ RUN apk add --no-cache --virtual .build-deps \
         boost-program_options \
         mariadb-connector-c
 
-WORKDIR /mytrojan
-CMD ["trojan", "config.json"]
-EXPOSE 8080
+ADD entrypoint.sh /entrypoint.sh
+
+RUN chmod +x /entrypoint.sh 
+
+ENTRYPOINT  /entrypoint.sh 
